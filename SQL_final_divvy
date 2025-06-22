@@ -1,0 +1,34 @@
+CREATE or REPLACE table divvy_data_w_seasons.final_divvy as
+SELECT
+  SAFE_CAST(ride_id as STRING) as ride_id,
+  started_at,
+  ended_at,
+  start_station_id,
+  start_station_name,
+  end_station_id,
+  end_station_name,
+  sub_cas,
+  ride_length,
+  day_of_week,
+  mean_ride_length,
+  max_ride_length,
+  mode_day_of_week,
+  season
+FROM divvy_data_w_seasons.final_divvy_2019
+UNION ALL
+SELECT 
+  CAST(ride_id as STRING) as ride_id,
+  started_at,
+  ended_at,
+  start_station_id,
+  start_station_name,
+  end_station_id,
+  end_station_name,
+  sub_cas,
+  ride_length,
+  day_of_week,
+  mean_ride_length,
+  max_ride_length,
+  mode_day_of_week,
+  season
+FROM divvy_data_w_seasons.final_divvy_2020;
